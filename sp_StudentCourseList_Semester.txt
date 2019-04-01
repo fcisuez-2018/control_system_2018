@@ -1,0 +1,33 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_StudentCourseList_Semester`( in semesterID int,in LevelID int,in MajorDepartmentID int)
+BEGIN
+if LevelID is null then 
+set LevelID=-1;
+END if;
+if MajorDepartmentID is null then set MajorDepartmentID=-1;
+END if;
+set @strQuery=CONCAT('SELECT Course.Code, Course.ArabicName, ',
+' (Course.Midterm+Course.`Year Work Grades O`+Course.`Year Work Grades PE`+ ',
+' Course.`YearWorkGrades G`+Course.FinalExam) AS ttotal, ',
+' student.MajorDepartmentID ',
+' FROM student INNER JOIN (Course INNER JOIN (Course_semester INNER JOIN  ',
+' (Registration INNER JOIN StudentLevel ON Registration.StudentID = StudentLevel.StudentID) ',
+' ON Course_semester.ID = Registration.Course_semesterID) ON Course.ID = Course_semester.CourseID) ',
+' ON student.ID = Registration.StudentID WHERE (1=1) ',
+' GROUP BY Course.Code, Course.ArabicName, (Course.Midterm+Course.`Year Work Grades O`+Course.`Year Work Grades PE`+ ',
+' Course.`YearWorkGrades G`+Course.FinalExam), Course_semester.CourseID, Course_semester.SemesterID,',
+' Course.Course, student.MajorDepartmentID ',
+' HAVING  (2=2 AND (Course_semester.SemesterID= ' , semesterID , '))');
+If MajorDepartmentID > -1 Then
+ set @strQuery = Replace(@strQuery, '2=2',CONCAT( 'student.MajorDepartmentID = ' , MajorDepartmentID));
+End If ;
+
+If LevelID <> -1 Then
+set @strQuery = Replace(@strQuery, '1=1',CONCAT( '1=1 AND StudentLevel.StudLevelID=' , LevelID));
+End If ;
+
+
+
+PREPARE stmt1 FROM @strQuery;
+EXECUTE stmt1;
+DEALLOCATE PREPARE stmt1;
+END

@@ -1,0 +1,19 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `coursesemestercount` AS
+    SELECT 
+        `student`.`ID` AS `StudentID`,
+        `student`.`StudentEductionalNumber` AS `StudentEductionalNumber`,
+        `student`.`StudentName` AS `StudentName`,
+        COUNT(`course_semester`.`CourseID`) AS `CountOfCourseID`,
+        `course_semester`.`SemesterID` AS `SemesterID`,
+        `semester`.`SemesterFullName` AS `SemesterFullName`,
+        `semester`.`Semester` AS `Semester`
+    FROM
+        (`student`
+        JOIN (`semester`
+        JOIN (`course_semester`
+        JOIN `registration` ON ((`course_semester`.`ID` = `registration`.`Course_semesterID`))) ON ((`semester`.`ID` = `course_semester`.`SemesterID`))) ON ((`student`.`ID` = `registration`.`StudentID`)))
+    GROUP BY `student`.`ID` , `student`.`StudentEductionalNumber` , `student`.`StudentName` , `course_semester`.`SemesterID` , `semester`.`SemesterFullName` , `semester`.`Semester`

@@ -1,0 +1,12 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `studentsemestercount` AS
+    SELECT 
+        `coursesemestercount`.`StudentID` AS `StudentID`,
+        `coursesemestercount`.`StudentEductionalNumber` AS `StudentEductionalNumber`,
+        COUNT(`coursesemestercount`.`Semester`) AS `CountOfSemester`
+    FROM
+        `coursesemestercount`
+    GROUP BY `coursesemestercount`.`StudentID` , `coursesemestercount`.`StudentEductionalNumber`

@@ -1,0 +1,37 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `cgpa_points` AS
+    SELECT 
+        `course_points`.`StudentID` AS `StudentID`,
+        `course_points`.`StudentName` AS `StudentName`,
+        `course_points`.`StudentCode` AS `StudentCode`,
+        ROUND(SUM(`course_points`.`Course_cr_points`),
+                2) AS `CGPA_Total_points`,
+        SUM(`course`.`Credits`) AS `CGPA_SumOfCredits`,
+        (SELECT 
+                `gpa_grade`.`Grade_English`
+            FROM
+                `gpa_grade`
+            WHERE
+                ((MAX(`course_points`.`CurriculumID`) = `gpa_grade`.`CurriculumID`)
+                    AND (`gpa_grade`.`Points` <= IFNULL(ROUND((SUM(`course_points`.`Course_cr_points`) / SUM(`course`.`Credits`)),
+                                2),
+                        0)))
+            LIMIT 1) AS `CGPA_grade`,
+        IFNULL(ROUND((SUM(`course_points`.`Course_cr_points`) / SUM(`course`.`Credits`)),
+                        2),
+                0) AS `CGPA_Points`,
+        SUM(`course_points`.`CourseCredits_Completed`) AS `CGPA_Credits_Completed`
+    FROM
+        (`course`
+        JOIN (`course_semester`
+        JOIN (`course_points`
+        JOIN `registration` ON ((`course_points`.`RegID` = `registration`.`ID`))) ON ((`course_semester`.`ID` = `registration`.`Course_semesterID`))) ON ((`course`.`ID` = `course_semester`.`CourseID`)))
+    WHERE
+        ((`course_points`.`CourseMarks` >= 0)
+            AND (`registration`.`statusID` < 2)
+            AND (`registration`.`FinalExam` NOT IN (-(300) , -(200))))
+    GROUP BY `course_points`.`StudentID` , `course_points`.`StudentName` , `course_points`.`StudentCode`
+    ORDER BY `course_points`.`StudentID` , `course_points`.`StudentCode`

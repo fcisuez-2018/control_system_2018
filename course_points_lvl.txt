@@ -1,0 +1,30 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `course_points_lvl` AS
+    (SELECT 
+        `registration`.`ID` AS `RegID`,
+        `student`.`StudentEductionalNumber` AS `StudentCode`,
+        `registration`.`StudentID` AS `StudentID`,
+        `course_semester`.`SemesterID` AS `SemesterID`,
+        `student`.`StudentName` AS `StudentName`,
+        `semester`.`SemesterEnumID` AS `SemesterEnumID`,
+        `studentsemestercount`.`CountOfSemester` AS `CountOfSemester`,
+        `semester`.`StatusID` AS `SemesterStatusID`,
+        `semester`.`Semester` AS `Semester`,
+        IF(((IFNULL(`registration`.`FinalExam`, 0) < (`course`.`FinalExam` * 0.4))
+                OR (((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0)) < (((((IFNULL(`course`.`Midterm`, 0) + IFNULL(`course`.`Year Work Grades O`, 0)) + IFNULL(`course`.`Year Work Grades PE`, 0)) + IFNULL(`course`.`YearWorkGrades G`, 0)) + IFNULL(`course`.`FinalExam`, 0)) * 0.5))),
+            0,
+            IFNULL(`course`.`Credits`, 0)) AS `CourseCredits_Completed`,
+        `student`.`MajorDepartmentID` AS `DepartmentID`
+    FROM
+        ((`student`
+        JOIN (`semester`
+        JOIN (`course`
+        JOIN (`course_semester`
+        JOIN `registration` ON ((`course_semester`.`ID` = `registration`.`Course_semesterID`))) ON ((`course`.`ID` = `course_semester`.`CourseID`))) ON ((`semester`.`ID` = `course_semester`.`SemesterID`))) ON ((`student`.`ID` = `registration`.`StudentID`)))
+        LEFT JOIN `studentsemestercount` ON ((`studentsemestercount`.`StudentID` = `registration`.`StudentID`)))
+    WHERE
+        (`registration`.`statusID` <> 2)
+    ORDER BY `student`.`StudentEductionalNumber`)

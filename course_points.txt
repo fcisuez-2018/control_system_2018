@@ -1,0 +1,206 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `course_points` AS
+    SELECT 
+        `registration`.`ID` AS `RegID`,
+        `student`.`CurriculumID` AS `CurriculumID`,
+        `student`.`StudentEductionalNumber` AS `StudentCode`,
+        `registration`.`StudentID` AS `StudentID`,
+        `course_semester`.`SemesterID` AS `SemesterID`,
+        `student`.`StudentName` AS `StudentName`,
+        `semester`.`SemesterEnumID` AS `SemesterEnumID`,
+        `semester`.`StatusID` AS `SemesterStatusID`,
+        `semester`.`Semester` AS `Semester`,
+        `course`.`Credits` AS `CourseCredits`,
+        `course`.`ArabicName` AS `CourseArabicName`,
+        `course`.`Prerequisits` AS `Prerequisits`,
+        `course`.`Code` AS `CourseCode`,
+        IF((IFNULL(`registration`.`FinalExam`, 0) < 0),
+            IFNULL(`registration`.`FinalExam`, 0),
+            ((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0))) AS `CourseMarks`,
+        IF((`registration`.`FinalExam` = -(300)),
+            (SELECT 
+                    `course_grade`.`Grade_English`
+                FROM
+                    `course_grade`
+                WHERE
+                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                        AND (`course_grade`.`OrderCode` = 54))
+                LIMIT 1),
+            IF((`registration`.`FinalExam` = -(200)),
+                (SELECT 
+                        `course_grade`.`Grade_English`
+                    FROM
+                        `course_grade`
+                    WHERE
+                        ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                            AND (`course_grade`.`OrderCode` = 53))
+                    LIMIT 1),
+                IF((`registration`.`FinalExam` = -(100)),
+                    (SELECT 
+                            `course_grade`.`Grade_English`
+                        FROM
+                            `course_grade`
+                        WHERE
+                            ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                AND (`course_grade`.`OrderCode` = 52))
+                        LIMIT 1),
+                    IF((((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0)) < (((((`course`.`FinalExam` + `course`.`Year Work Grades O`) + `course`.`Year Work Grades PE`) + `course`.`YearWorkGrades G`) + `course`.`Midterm`) * (SELECT 
+                                `curriculum`.`Limit_Fail_Total`
+                            FROM
+                                `curriculum`
+                            WHERE
+                                (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                            LIMIT 1))),
+                        (SELECT 
+                                `course_grade`.`Grade_English`
+                            FROM
+                                `course_grade`
+                            WHERE
+                                ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                    AND (`course_grade`.`OrderCode` = 50))
+                            LIMIT 1),
+                        IF((IFNULL(`registration`.`FinalExam`, 0) < (`course`.`FinalExam` * (SELECT 
+                                    `curriculum`.`Limit_Fail_Final`
+                                FROM
+                                    `curriculum`
+                                WHERE
+                                    (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                                LIMIT 1))),
+                            (SELECT 
+                                    `course_grade`.`Grade_English`
+                                FROM
+                                    `course_grade`
+                                WHERE
+                                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                        AND (`course_grade`.`OrderCode` = 51))
+                                LIMIT 1),
+                            (SELECT 
+                                    `course_grade`.`Grade_English`
+                                FROM
+                                    `course_grade`
+                                WHERE
+                                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                        AND (`course_grade`.`Percentage` <= ((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0))))
+                                LIMIT 1)))))) AS `Grade_English`,
+        IF((`registration`.`FinalExam` = -(300)),
+            (SELECT 
+                    `course_grade`.`Grade_Arabic`
+                FROM
+                    `course_grade`
+                WHERE
+                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                        AND (`course_grade`.`OrderCode` = 54))
+                LIMIT 1),
+            IF((`registration`.`FinalExam` = -(200)),
+                (SELECT 
+                        `course_grade`.`Grade_Arabic`
+                    FROM
+                        `course_grade`
+                    WHERE
+                        ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                            AND (`course_grade`.`OrderCode` = 53))
+                    LIMIT 1),
+                IF((`registration`.`FinalExam` = -(100)),
+                    (SELECT 
+                            `course_grade`.`Grade_Arabic`
+                        FROM
+                            `course_grade`
+                        WHERE
+                            ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                AND (`course_grade`.`OrderCode` = 52))
+                        LIMIT 1),
+                    IF((((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0)) < (((((`course`.`FinalExam` + `course`.`Year Work Grades O`) + `course`.`Year Work Grades PE`) + `course`.`YearWorkGrades G`) + `course`.`Midterm`) * (SELECT 
+                                `curriculum`.`Limit_Fail_Total`
+                            FROM
+                                `curriculum`
+                            WHERE
+                                (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                            LIMIT 1))),
+                        (SELECT 
+                                `course_grade`.`Grade_Arabic`
+                            FROM
+                                `course_grade`
+                            WHERE
+                                ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                    AND (`course_grade`.`OrderCode` = 50))
+                            LIMIT 1),
+                        IF((IFNULL(`registration`.`FinalExam`, 0) < (`course`.`FinalExam` * (SELECT 
+                                    `curriculum`.`Limit_Fail_Final`
+                                FROM
+                                    `curriculum`
+                                WHERE
+                                    (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                                LIMIT 1))),
+                            (SELECT 
+                                    `course_grade`.`Grade_Arabic`
+                                FROM
+                                    `course_grade`
+                                WHERE
+                                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                        AND (`course_grade`.`OrderCode` = 51))
+                                LIMIT 1),
+                            (SELECT 
+                                    `course_grade`.`Grade_Arabic`
+                                FROM
+                                    `course_grade`
+                                WHERE
+                                    ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                        AND (`course_grade`.`Percentage` <= ((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0))))
+                                LIMIT 1)))))) AS `Grade_Arabic`,
+        IF((IFNULL(`registration`.`FinalExam`, 0) < (`course`.`FinalExam` * (SELECT 
+                    `curriculum`.`Limit_Fail_Final`
+                FROM
+                    `curriculum`
+                WHERE
+                    (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                LIMIT 1))),
+            0,
+            IF((((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0)) <= 0),
+                '',
+                ROUND((SELECT 
+                                `course_grade`.`Points`
+                            FROM
+                                `course_grade`
+                            WHERE
+                                ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                                    AND (`course_grade`.`Percentage` <= ((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0))))
+                            LIMIT 1),
+                        2))) AS `Course_Points`,
+        ROUND(((SELECT 
+                        `course_grade`.`Points`
+                    FROM
+                        `course_grade`
+                    WHERE
+                        ((IFNULL(`student`.`CurriculumID`, 0) = `course_grade`.`CurriculumID`)
+                            AND (`course_grade`.`Percentage` <= ((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0))))
+                    LIMIT 1) * `course`.`Credits`),
+                2) AS `Course_cr_points`,
+        IF(((IFNULL(`registration`.`FinalExam`, 0) < (`course`.`FinalExam` * (SELECT 
+                    `curriculum`.`Limit_Fail_Final`
+                FROM
+                    `curriculum`
+                WHERE
+                    (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                LIMIT 1)))
+                OR (((IFNULL(`registration`.`FinalExam`, 0) + IFNULL(`registration`.`YearWork`, 0)) + IFNULL(`registration`.`MidTermExam`, 0)) < (((((IFNULL(`course`.`Midterm`, 0) + IFNULL(`course`.`Year Work Grades O`, 0)) + IFNULL(`course`.`Year Work Grades PE`, 0)) + IFNULL(`course`.`YearWorkGrades G`, 0)) + IFNULL(`course`.`FinalExam`, 0)) * (SELECT 
+                    `curriculum`.`Limit_Fail_Total`
+                FROM
+                    `curriculum`
+                WHERE
+                    (IFNULL(`student`.`CurriculumID`, 0) = `curriculum`.`ID`)
+                LIMIT 1)))),
+            0,
+            IFNULL(`course`.`Credits`, 0)) AS `CourseCredits_Completed`,
+        `student`.`MajorDepartmentID` AS `DepartmentID`
+    FROM
+        (`student`
+        JOIN (`semester`
+        JOIN (`course`
+        JOIN (`course_semester`
+        JOIN `registration` ON ((`course_semester`.`ID` = `registration`.`Course_semesterID`))) ON ((`course`.`ID` = `course_semester`.`CourseID`))) ON ((`semester`.`ID` = `course_semester`.`SemesterID`))) ON ((`student`.`ID` = `registration`.`StudentID`)))
+    WHERE
+        (`registration`.`statusID` <> 2)
+    ORDER BY `student`.`StudentEductionalNumber`

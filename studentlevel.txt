@@ -1,0 +1,36 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `studentlevel` AS
+    SELECT 
+        `course_points_lvl`.`StudentCode` AS `StudentCode`,
+        `course_points_lvl`.`StudentID` AS `StudentID`,
+        `course_points_lvl`.`CountOfSemester` AS `CountOfSemester`,
+        `course_points_lvl`.`SemesterStatusID` AS `SemesterStatusID`,
+        `course_points_lvl`.`StudentName` AS `StudentName`,
+        SUM(`course_points_lvl`.`CourseCredits_Completed`) AS `Total_Credits_Completed`,
+        (SELECT 
+                `level`.`LevelTxt_Arabic`
+            FROM
+                `level`
+            WHERE
+                (`level`.`LevelCreditHours` > IFNULL(SUM(`course_points_lvl`.`CourseCredits_Completed`),
+                        0))
+            LIMIT 1) AS `StudLevel`,
+        (SELECT 
+                `level`.`ID`
+            FROM
+                `level`
+            WHERE
+                (`level`.`LevelCreditHours` > IFNULL(SUM(`course_points_lvl`.`CourseCredits_Completed`),
+                        0))
+            LIMIT 1) AS `StudLevelID`
+    FROM
+        `course_points_lvl`
+    GROUP BY `course_points_lvl`.`StudentCode` , `course_points_lvl`.`StudentID` , `course_points_lvl`.`StudentName` , `course_points_lvl`.`CountOfSemester` , `course_points_lvl`.`SemesterStatusID`
+    HAVING (((`course_points_lvl`.`CountOfSemester` < 2)
+        AND (`course_points_lvl`.`SemesterStatusID` < 2))
+        OR ((`course_points_lvl`.`CountOfSemester` >= 2)
+        AND (`course_points_lvl`.`SemesterStatusID` > 1)))
+    ORDER BY `course_points_lvl`.`StudentCode`
