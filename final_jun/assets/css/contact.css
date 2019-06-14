@@ -1,0 +1,74 @@
+body{
+    background-image:url('../../assets/img/VoiceRasier-Services-Social-Media-Background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+input, textarea {
+    margin-top:15px;
+    border-style:2px solid;
+    border-color: green;
+}
+.h{
+    margin-top: 50px;
+    color:whitesmoke;
+    font-size: 50px;
+}
+.social{
+    display:inline;
+    width:3%;
+}
+#footer {
+    position: absolute;
+    padding:5px 20px;
+    margin-top: 25px;
+    bottom:0;
+    background-color:#2d3d5a;
+    text-align:right;
+    color:#fff;
+    width: 100%;
+    font-size:15px;
+    opacity: 0.8;
+    height: 7%;
+}
+#footer a
+{
+    text-decoration: none;
+    color: white;
+}
+.logo-custom{
+    width: 4vw;
+    position: absolute;
+    margin-top: -14px;
+    left: 40px;
+}
+.logo-custom:hover{
+    opacity: 1;
+}
+.navbar-header h1 {
+    display: inline-block;
+    width: 19%;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    left: 105px;
+    color: white;
+    font-size: 2vw;
+    letter-spacing: 0.7px;
+    font-weight: 900;
+
+}
+.navbar-inverse .navbar-nav>li>a{
+    font-size: 22px;
+    font-weight: 900;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    border-bottom:solid 1px white;
+}
+
+.navbar-header h1::after {
+    content: "";
+    display: block;
+    margin: auto -4;
+    border: solid 2px #d80a0a;
+    width: 20vw;
+}

@@ -1,0 +1,55 @@
+#myInput {
+  background-position: 10px 12px; 
+  background-repeat: no-repeat; 
+  width: 80%; 
+  font-size: 16px; 
+  padding: 12px 20px 12px 40px; 
+  border: 1px solid #ddd; 
+  margin-bottom: 12px; 
+  border-radius: 25px;
+  color: black;
+  font-weight: 900;
+}
+
+#myTable {
+  border-collapse: collapse; 
+  border: 1px solid #ddd; 
+  width: 100%;
+  overflow:scroll;
+  font-weight: 900;
+  color:blue;
+  font-size:25px;
+  
+}
+#myTable input{
+  width:130px;
+}
+#myTable th, #myTable td {
+  text-align: center; 
+  padding: 10px; 
+}
+#mytable{
+ background-color: white;
+}
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 500px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+.btn{
+  background: linear-gradient(to right, #33ccff , #ff99cc );
+  color:white;
+  width: 10vw;
+  font-weight: 900;
+  height:3vw;
+}

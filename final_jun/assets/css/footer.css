@@ -1,0 +1,16 @@
+#footer {
+    position: relative;
+    padding:5px 20px;
+    background-color:#2d3d5a;
+    text-align:right;
+    color:#fff;
+    font-size:15px;
+    bottom: -80px;
+    width: 100%;
+    opacity: 0.8;
+}
+#footer a
+{
+    text-decoration: none;
+    color: white;
+}

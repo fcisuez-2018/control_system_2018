@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-image: url('../img/33.jpeg');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    min-width: 0%;
+    min-height: 0%;
+    background-attachment: fixed;
+    min-height: 100%;
+    
+}
+
+#login{
+    background-color: rgb(240, 232, 232);
+    opacity: 0.8;
+    width: 45%;
+    height: 73%;
+    margin-top: 10vw;
+    border-radius: 10%;
+}
+#logo{
+  width: 20%;
+  margin-left: 40%;
+  margin-top:-30px;
+  position: relative;
+  opacity: 1;
+}
+.header{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+}
+#login input:hover{
+    border: none;
+    border-bottom: 1px solid #fb2525;
+    background: transparent;
+    outline:none;
+    height: 34px;
+    color: #000;
+    font-size: 16px;
+}
+#login input{
+    border-radius: 20px
+}
+#login button {
+    width: 80%;
+    margin-left:10%;
+    border-radius: 20px;
+    background-color: rgb(163, 145, 145);
+    color: #000;
+    font-style: unset;
+    background-image: linear-gradient(to right,#0099ff,#ff00ff);
+
+}
+#login h1{
+   color:#2d3d5a;
+}
+#login button:hover{
+    color:white;
+    border-style:solid; 
+}
+#login a{
+    text-decoration: none;
+    color:#2d3d5a;
+    margin-left:4vw; 
+}
+#login a:hover{
+    color:#21a1eb;
+}
+.logo-custom{
+    max-width: 50;
+    position: absolute;
+    margin-top: -14px;
+    left: 40px;
+}
+.logo-custom:hover{
+    opacity: 1;
+}
+.navbar-header h1 {
+    display: inline-block;
+    width: 19%;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+    left: 105px;
+    color: white;
+    font-size: 2vw;
+    letter-spacing: 0.7px;
+    font-weight: 900;
+
+}
+.navbar-inverse .navbar-nav>li>a{
+    font-size: 22px;
+    font-weight: 900;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+    border-bottom:solid 1px white;
+}
+
+.navbar-header h1::after {
+    content: "";
+    display: block;
+    margin: auto -4;
+    border: solid 2px #d80a0a;
+    width: 20vw;
+}
+#menu{
+    background-color: rgba(0, 0, 0,1);
+}
+
+#selector span{
+    font-size: 2vw;
+    color: white;
+}
+#selector label{
+    font-size: 2vw;
+    color: #000;
+}
+#selector input{
+    background: linear-gradient(to right, #33ccff , #ff99cc );
+    color:white;
+    width: 6vw;
+    border-radius: 10px;
+}
+.editbtn{
+    
+    background: linear-gradient(to right, #33ccff , #ff99cc );
+    color:white;
+    width: 8vw;
+    height: 3vw;
+    border-radius: 10px;
+}
+#header{
+    position: fixed;
+    display: block;
+}
+

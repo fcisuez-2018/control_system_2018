@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Online Blood Bank that facilitate the proccess of blood donation" />
+
+    <title>Exams Management System</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- FLEXSLIDER CSS -->
+    <link href="assets/css/flexslider.css" rel="stylesheet" />
+    <!-- Google	Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+
+    <!--Angular Framework-->
+    <script src="assets/js/angular.1.6.min.js"></script>
+
+    <!--App Module-->
+    <script src="assets/js/app.js"></script>
+    <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="Articles/css/article1.css" rel="stylesheet" />
+    <link href="Articles/css/footer.css" rel="stylesheet" />
+    <link href="assets/css/topback.css" rel="stylesheet"/>
+    
+    <!--<link href="Articles/css/article2.css" rel="stylesheet" />-->
+
+    <!--JS Code-->
+    <script src="Articles/js/article1.js"></script>
+    <!--<script src="Articles/js/article2.js"></script>-->
+</head>
+
+<body ng-app="BloodBankMod" ng-controller="homeCtrl">
+
+    <div class="mynav navbar navbar-inverse navbar-fixed-top " id="menu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">
+                    <img class="logo-custom" src="assets/img/suez.png" alt=Suez University Drop Logo" />
+                </a>
+                <h1>Suez  University</h1>
+            </div>
+            <div class="navbar-collapse collapse move-me">
+                <ul class="nav navbar-nav navbar-right">
+                  <li>
+                        <a href="#">HOME</a>
+                    </li>
+                   
+                    <li>
+                       <a href="log.html ">Log IN To EMS</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--NAVBAR SECTION END-->
+
+    <div class="home-sec" id="home">
+
+        <div class="overlay">
+
+            <div class="container">
+
+                <div class="row text-center ">
+
+                    <div class="col-lg-12  col-md-12 col-sm-12">
+
+                        <div class="flexslider set-flexi" id="main-section">
+
+                            <ul class="slides move-me">
+
+                                <!-- Slider 01 -->
+                                <li>
+                                    <h2>Welcome To Exams Management System</h3>
+
+                                    <h1>This system is useful for all faculties </h1>
+
+                                </li>
+                                <!-- End Slider 01 -->
+
+                                <!-- Slider 02 -->
+                                <li>
+                                   
+
+                                    <h1> in the university as it provide effort for doctors and students as the student can get his marks and grades from the website easily in any time and any place . </h1>
+
+                                    <a href="log.html" class="btn btn-lg" id="donateBtn">
+                                        Log In Now
+                                    </a>
+
+                                </li>
+                                <!-- End Slider 02 -->
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!--HOME SECTION END-->
+
+    <div id="about-sec" class="container set-pad">
+        <div class="row text-center">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                <h1 data-scroll-reveal="enter from the bottom after 0.2s" class="header-line">About EMS</h1>
+                <p data-scroll-reveal="enter from the bottom after 0.3s">
+                        Exam managmenet system 
+The system has developed to enter or edit the marks and the grades of the students in their academic year ,, enable doctors to search for a student name or course name and it enable the students to know their marks and grades of the years before and they must enter ID and their National ID to get the marks and grades .</p>
+            </div>
+
+        </div>
+        <!--/.HEADER LINE END-->
+
+
+    </div>
+    <!-- ABOUT SECTION END-->
+
+    <div id="articleWrapper">
+        <div id="article-sec">
+            <div class="container set-pad">
+                <div class="row text-center">
+
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+                        <h1 data-scroll-reveal="enter from the top after 0.1s" class="header-line">ARTICLES </h1>
+                    </div>
+
+                </div>
+                <!--/.HEADER LINE END-->
+
+                <div class="row">
+
+                    <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
+                        <div class="article-div" ng-click="showArticle1=!showArticle1">
+                            <img src="assets/img/ashSuezu.jpeg" class="img-rounded" />
+                            <h3>رؤية الجامعة</h3>
+                            <hr />
+                            <p>
+                                رؤية الجامعة تتمثل في مواجهة التحديات و التغيرات الكونيه ومواكبة التكنولوجيا
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the top after 0.5s">
+                        <div class="article-div" ng-click="showArticle2=!showArticle2">
+                            <img src="assets/img/scifac-01.jpeg" class="img-rounded" />
+                            <h3>رسالة الجامعة</h3>
+                            <hr />
+                            <p>
+                                تعتبرجامعة السويس مؤسسه اكاديميه لها هدف محورى لتنمية الفكر و الارتقاء بالفرد
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4  col-md-4 col-sm-4" data-scroll-reveal="enter from the bottom after 0.5s">
+                        <div class="article-div" ng-click="showArticle3=!showArticle3">
+                            <img src="assets/img/DSC_47ss69.jpeg" class="img-rounded" />
+                            <h3>أهداف الجامعة</h3>
+                            <hr />
+                            <p>
+                                إعداد الكوادر البشریة المتخصصة في مجال العلوم و المعرفة الحدیثة
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ARTICLE SECTION END-->
+
+        <div class="containerDiv" ng-show="showArticle1" ng-click="showArticle1 =!showArticle1">
+            <!--containerDiv1-->
+            <div class="articleContainerDiv">
+                <!--HeaderDiv-->
+                <div class="headerDiv">
+                    <!--imgDiv-->
+                    <div class="imgDiv">
+                        <img class="img-thumbnail" src="assets/img/ashSuezu.jpeg">
+                    </div>
+                    <h1>رؤية الجامعة </h1>
+
+
+                    <hr/>
+                </div>
+
+                <!--articleDiv-->
+                <div class="content">
+                        
+                        <ul>
+                            <li>رؤية الجامعة تتمثل في مواجهة التحديات و التغيرات الكونيه ومواكبة التكنولوجيا هذا بالاضافة الي تلبيه احتياجات المجتمع و دفع قاطرة التنميه والتطلع لأن تكون منارة للعلم والبحث العلمى و المشاركة المجتمعية فى مصر و العالم.</li>
+                        </ul>
+        
+                
+                </div>
+            </div>
+        </div>
+        <!-- ARTICLE1 PANE END-->
+
+        <div class="containerDiv" ng-show="showArticle2" ng-click="showArticle2 =!showArticle2">
+            <!--containerDiv1-->
+            <div class="articleContainerDiv">
+                <!--HeaderDiv-->
+                <div class="headerDiv">
+                    <!--imgDiv-->
+                    <div class="imgDiv">
+                        <img class="img-thumbnail" src="assets/img/scifac-01.jpeg">
+                    </div>
+                    <h1>رسالة الجامعة </h1>
+
+
+                    <hr/>
+                </div>
+
+                <!--articleDiv-->
+                <div class="content">
+                    <p>جامعة السويس مؤسسه تعليميه علميه رائده ضمن كوكبة الجامعات المصريه الحكوميه و الخاصه تهدف الي توفير بيئة تعليميه لديها قدرة على التعليم و التعلم ومواكبة التطورات التكنولوجية و تحديات المجتمع للخريج و البحث العلمى في سبيل للتنميه بالمجتمع المصرى و مشاركه جامعات العالم فى تلبية حاجات الانسان و اشباعها و المشاركه فى بناء حضارة راقيه كلبنة من لبنات التطور الانسانى.
+
+و تعتبرجامعة السويس مؤسسه اكاديميه لها هدف محورى لتنمية الفكر و الارتقاء بالفرد و المجتمع و ضبط العادات و السلوك ضبطا فكريا و معرفيا.
+
+و تلعب الجامعة دورا رياديا فى اتاحة فرص التعليم لأبناء منطقة خليج السويس و القناة و جنوب سيناء و ظهير البحر الأحمر
+
+كما تتحمل الجامعه مسئوليه مجتمعيه و علميه و ثقافيه لكى تقود الحركه العلميه الثقافيه و التنمويه فى مجالات التعليم و التكنولوجيا و الاكتشافات العلميه.
+
+كما ان للجامعه دور فى توفير مناخ ملائم فكرى و ثقافى و معرفى فى كافة المجالات و احياء الفكر العلمى فى العقل الجمعى و من أجل ذلك تحشد الجامعه كامل طاقتها البشريه و الماديه بغية تحقيق هذه الرؤيه لكى تتميز و تتفوق.
+
+هذا بالاضافة الي أن الجامعة تعمل على اعداد خريج متميز و ذو مهارات مهنية و معرفيه و رغبه فى الابداع و قدرة على نقل المعرفه و تطبيقاتها من خلال الأعمال الأبداعيه و البحث العلمى.</p>
+                </div>
+            </div>
+        </div>
+        <!-- ARTICLE2 PANE END-->
+
+        
+        <div class="containerDiv" ng-show="showArticle3" ng-click="showArticle3 =!showArticle3">
+            <!--containerDiv1-->
+            <div class="articleContainerDiv">
+                <!--HeaderDiv-->
+                <div class="headerDiv">
+                    <!--imgDiv-->
+                    <div class="imgDiv">
+                        <img class="img-thumbnail" src="assets/img/DSC_47ss69.jpeg">
+                    </div>
+                    <h1>أهداف الجامعة </h1>
+        
+        
+                    <hr/>
+                </div>
+        
+                <!--articleDiv-->
+                <div class="content">
+                      <p>إعداد الكوادر البشریة المتخصصة في مجال العلوم و المعرفة الحدیثة مع الاھتمام بالمجالات التطبیقیة خاصة فى مجالات العلوم المختلفة بما فيها علوم الطاقة</p>
+                       
+                     
+                        <p>الجديدة و المتجددة بمنطقة البحر الأبيض المتوسط والبحر الأحمر الممتد الى الخليج العربى عبر باب المندب</p>
+                        <p>التأھیل العلمي والتطبیقي للطلاب للعمل في المجالات المختلفة ومنحھم الدرجات العلمیة المؤھلة مثل (البكالوریوس و الليسانس في ھذه المجالات</p>
+                        <p>القيام بالبحوث الأساسیة والتطبیقیة المتعلقة بالمجالات السابقة ومنح الدرجات العلیا فیھا</p>
+                        
+                        
+                       
+                        <p>خدمة البیئة والمجتمع وفتح مجالات تدریبیة لإعداد مستویات علمیة مختلفة للعمل علي تنمیة منطقة قناة السويس</p>
+                        <p>التعاون مع المؤسسات العلمیة والھیئات الوطنیة والجامعات العربیة والدولیة المماثلة و تبادل البرامج و الطلاب و الأساتذة و بخاصة في حوض البحر المتوسط </p>
+                        
+                                    
+        
+                </div>
+            </div>
+        </div>
+        <!-- ARTICLE2 PANE END-->
+
+
+    </div>
+
+
+    
+
+          
+
+                       
+
+                    
+                        
+
+                    
+
+                      
+
+                
+            </div>
+
+        </div>
+    </div>
+    <!-- PROGRESS SECTION END-->
+    <div><a id='mina' href="javascript:history.go(-1)"onMouseOver="self.status.referrer;return true">Back</a></div>
+
+    <button onclick="topFunction()" id='myBtn' title="Go to top">Top</button>
+
+    <div id="footer">
+        &copy 2019 SuezUniversity.eg | All Rights Reserved | <a href="index1.php">Contact Us</a>
+    </div>
+    <!-- FOOTER SECTION END-->
+
+
+
+    <!--  Jquery Core Script -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!--  Core Bootstrap Script -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!--  Flexslider Scripts -->
+    <script src="assets/js/jquery.flexslider.js"></script>
+    <!--  Scrolling Reveal Script -->
+    <script src="assets/js/scrollReveal.js"></script>
+    <!--  Scroll Scripts -->
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <!--  Custom Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/topback.js"></script>
+                                    
+</body>
+
+</html>

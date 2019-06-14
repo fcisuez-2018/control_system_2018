@@ -1,0 +1,47 @@
+    #mina{
+    position: fixed;
+    bottom: 7vw;
+    float: right;
+    right: 95%;
+    left: 15;
+    max-width:4vw;
+    width: 100%;
+    font-size: 12px;
+    border-color: rgba(85, 85, 85, 0.2);
+    background-color:  #334d4d;
+    color: white;
+    padding: .5px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5vw;
+}
+    
+    #mina:hover{     
+    background-color: #555;
+}
+     
+    #myBtn {
+    position: fixed;
+    bottom: 7Vw;
+    float: right;
+    right: 18.5%;
+    left: 95%;
+    max-width: 4vw;
+    width: 100%;
+    font-size: 12px;
+    border-color: rgba(85, 85, 85, 0.2);
+    background-color: #334d4d;
+    color: white;
+    padding: .5px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align:center;
+    font-size: 1.5vw;
+    
+}
+/*On Hover Color Change*/
+#myBtn:hover {
+    background-color: #555;
+}
