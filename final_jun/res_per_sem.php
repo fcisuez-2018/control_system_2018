@@ -194,7 +194,7 @@ echo" </select>";
 <center>
 
 
-<button onclick="exportTableToExcel('myTable', 'Results-data')"><b>Export Result To Excel File</button>
+<button onclick="exportTableToExcel('myTable', 'Results-data')" style="  background: linear-gradient(to right, #33ccff , #ff99cc );color:white; width: 9vw;height:3vw;border-radius: 10px;"><b>Export Result To Excel File</button>
 </center>
 
 <center>

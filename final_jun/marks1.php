@@ -67,10 +67,10 @@ function exportTableToExcel(tableID, filename = ''){
             <div class="navbar-collapse collapse move-me">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="mi">
-                                <a href="index.html">Home</a>
+                                <a href="marks1.php">Home</a>
                         </li>
                         <li class="mi">
-                                <a href="log.html">Log In</a>
+                                <a href="log.html">Log Out</a>
                         </li> 
                     </ul>
                                                                
@@ -177,7 +177,7 @@ echo" </select>";
  </label>
 </form>
 
-<button onclick="exportTableToExcel('myTable', 'Results-data')"><b>Export Result To Excel File</button>
+<!--<button onclick="exportTableToExcel('myTable', 'Results-data')"  style="  background: linear-gradient(to right, #33ccff , #ff99cc );color:white; width: 16vw;height:3vw;border-radius: 10px;font-size:15"><b>Export Result To Excel File</button>-->
 <br><br>
 
 <div class='table-wrapper-scroll-y my-custom-scrollbar'>

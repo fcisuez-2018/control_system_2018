@@ -56,7 +56,7 @@ if($adminpass=$_SESSION['pwd']){
                         <a href="res_per_sem.php">Full Result</a>
                     </li>
                     <li>
-                        <a href="report.html">Reports</a>
+                        <a href="document.html">Reports</a>
                     </li>
                     
                     <li>
@@ -153,10 +153,11 @@ while($row1 = mysqli_fetch_row( $getsemester ))
 }
 
 	
-	}
+	
+	
+	
 	
 $getcourse=mysqli_query($DB,"CALL sp_course_semester('$semesterID','$levelID')");
-
 $num_r=mysqli_num_rows($getcourse);
 if($num_r>0)
 {
@@ -188,11 +189,9 @@ while($row=mysqli_fetch_row($getcourse))
 
  echo"</table>"; 
 
+ }else{echo"<center><h1 style='color:white; font-weight:700 font-family:arial'>There is no Courses in<br> ".$seme." and level ".$levelID."</h1></center>";}
  
- }else{echo"<center><h1></h1>";
-		/*echo"<mark><span>There is no Courses in<br> ".$seme." and level ".$levelID."</span>";*/
-		echo"</center>";
- }
+}
  $_SESSION["level"]='';
 $_SESSION["semester"]='';
 if(isset($_GET['level'])){
